@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avenged MVP 6.1 - Complete Guide</title>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #008080;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --card: #12121a;
+            --card-hover: #1a1a25;
+            --text: #e0e0e0;
+            --text-muted: #888;
+            --accent-red: #ff4444;
+            --accent-blue: #4488ff;
+            --accent-gold: #ffd700;
+            --accent-purple: #aa66ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--card) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--secondary);
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s linear infinite;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .version {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        .discord-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #5865F2, #7289da);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .discord-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--darker);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--card);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            background: var(--card);
+            border: 1px solid var(--secondary);
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 128, 128, 0.5);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin: 15px 0 10px;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 5px 25px rgba(0, 128, 128, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title .icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Controls Box */
+        .controls-box {
+            background: var(--darker);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent-blue);
+        }
+        
+        .control-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #333;
+        }
+        
+        .control-item:last-child {
+            border-bottom: none;
+        }
+        
+        .key {
+            background: linear-gradient(135deg, #333, #222);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            border: 1px solid #444;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .ps-key { border-color: #0070d1; color: #4da6ff; }
+        .xbox-key { border-color: #107c10; color: #6cca6c; }
+        
+        /* Values */
+        .value-range {
+            background: var(--darker);
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        .value-min { color: var(--accent-red); }
+        .value-max { color: var(--primary); }
+        .value-default { color: var(--accent-gold); }
+        
+        /* Option Pills */
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .option-pill {
+            background: var(--darker);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--secondary);
+        }
+        
+        .option-pill.recommended {
+            background: linear-gradient(135deg, var(--secondary), #006666);
+            color: white;
+        }
+        
+        /* Tables */
+        .settings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--card);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .settings-table th,
+        .settings-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--darker);
+        }
+        
+        .settings-table th {
+            background: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .settings-table tr:hover {
+            background: var(--card-hover);
+        }
+        
+        /* Position Tabs */
+        .position-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .position-tab {
+            padding: 12px 24px;
+            background: var(--card);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .position-tab:hover {
+            border-color: var(--secondary);
+        }
+        
+        .position-tab.active {
+            background: linear-gradient(135deg, var(--secondary), #006666);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .position-tab .pos-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .position-tab .pos-abbr {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .position-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .position-content.active {
+            display: block;
+        }
+        
+        /* Combo Display */
+        .combo-sequence {
+            background: var(--darker);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        .combo-step {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 3px;
+            background: var(--card);
+            border-radius: 5px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .combo-wait {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+        
+        /* Tips Box */
+        .tip-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            border: 1px solid var(--accent-gold);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .tip-box::before {
+            content: "💡 TIP: ";
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 68, 68, 0.05));
+            border: 1px solid var(--accent-red);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning-box::before {
+            content: "⚠️ WARNING: ";
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+        
+        /* Status Indicators */
+        .status-on {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .status-off {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+        
+        /* Interactive Toggle Demo */
+        .toggle-demo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--darker);
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .toggle-switch {
+            width: 60px;
+            height: 30px;
+            background: #333;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .toggle-switch.on {
+            background: var(--secondary);
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+        
+        .toggle-switch.on::after {
+            transform: translateX(30px);
+        }
+        
+        /* Slider Demo */
+        .slider-demo {
+            width: 100%;
+            padding: 20px;
+            background: var(--darker);
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .slider-track {
+            width: 100%;
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            position: relative;
+            margin: 15px 0;
+        }
+        
+        .slider-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        
+        .slider-markers {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        /* Quick Reference */
+        .quick-ref {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .quick-ref-item {
+            background: var(--card);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 3px solid var(--secondary);
+        }
+        
+        .quick-ref-item strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid var(--card);
+            margin-top: 50px;
+        }
+        
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo { font-size: 2rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .nav-btn { padding: 8px 15px; font-size: 0.8rem; }
+            .position-tab { padding: 10px 15px; }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="logo">⚡ AVENGED MVP</div>
+        <div class="version">Version 6.1 - Complete Guide</div>
+        <a href="https://discord.gg/AvengedScripts" class="discord-link" target="_blank">
+            🎮 Join Discord Community
+        </a>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="overview">📋 Overview</button>
+            <button class="nav-btn" data-section="menu">🎛️ Menu Controls</button>
+            <button class="nav-btn" data-section="shooting">🏀 Shooting</button>
+            <button class="nav-btn" data-section="dribbling">⛹️ Dribbling</button>
+            <button class="nav-btn" data-section="defense">🛡️ Defense</button>
+            <button class="nav-btn" data-section="utility">⚙️ Utility</button>
+            <button class="nav-btn" data-section="combos">🎯 Combo Details</button>
+            <button class="nav-btn" data-section="recommended">⭐ Recommended Settings</button>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Overview Section -->
+        <section id="overview" class="section active">
+            <h2>📋 Script Overview</h2>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🎮</span> What is Avenged MVP?</div>
+                <p>Avenged MVP 6.1 is a comprehensive basketball gaming script designed for Cronus Zen devices. It provides automated shooting mechanics, dribble moves, defensive assists, and various quality-of-life improvements to enhance your gameplay experience.</p>
+                
+                <div class="tip-box">
+                    This script is compatible with both PlayStation and Xbox controllers. The OLED display provides real-time feedback and menu navigation.
+                </div>
+            </div>
+            
+            <h3>🔑 Key Features at a Glance</h3>
+            <div class="quick-ref">
+                <div class="quick-ref-item">
+                    <strong>Button Rhythm</strong>
+                    Automated shot timing
+                </div>
+                <div class="quick-ref-item">
+                    <strong>Turbo Shots</strong>
+                    Hop Jumper / Turbo Fade
+                </div>
+                <div class="quick-ref-item">
+                    <strong>RS Shooting</strong>
+                    Right stick shot control
+                </div>
+                <div class="quick-ref-item">
+                    <strong>Automated Shot</strong>
+                    One-button quick shots
+                </div>
+                <div class="quick-ref-item">
+                    <strong>QuickStop</strong>
+                    Momentum canceling
+                </div>
+                <div class="quick-ref-item">
+                    <strong>D-Pad Dribbles</strong>
+                    4 customizable moves
+                </div>
+                <div class="quick-ref-item">
+                    <strong>Dunk Meter</strong>
+                    Automated dunk timing
+                </div>
+                <div class="quick-ref-item">
+                    <strong>Defense Assist</strong>
+                    Stick mirroring on D
+                </div>
+                <div class="quick-ref-item">
+                    <strong>Unlimited Stamina</strong>
+                    Movement throttling
+                </div>
+                <div class="quick-ref-item">
+                    <strong>5 Profiles</strong>
+                    Save different setups
+                </div>
+            </div>
+            
+            <h3>📊 Menu Pages Overview</h3>
+            <table class="settings-table">
+                <thead>
+                    <tr>
+                        <th>Page #</th>
+                        <th>Setting Name</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Button Rhythm</td><td>Toggle</td><td>ON</td></tr>
+                    <tr><td>2</td><td>Tempo (ms)</td><td>Value (0-300)</td><td>42ms</td></tr>
+                    <tr><td>3</td><td>Turbo Shots</td><td>Mode Select</td><td>Turbo Fade</td></tr>
+                    <tr><td>4</td><td>RS Shooting</td><td>Toggle</td><td>OFF</td></tr>
+                    <tr><td>5</td><td>Automated Shot</td><td>Toggle</td><td>ON</td></tr>
+                    <tr><td>6</td><td>Automated Speed</td><td>Value (100-1000)</td><td>570ms</td></tr>
+                    <tr><td>7</td><td>Automated Tempo</td><td>Value (0-300)</td><td>44ms</td></tr>
+                    <tr><td>8</td><td>Remap Button</td><td>L3 / R3</td><td>L3</td></tr>
+                    <tr><td>9</td><td>QuickStop</td><td>OFF/AUTO/LT</td><td>AUTO</td></tr>
+                    <tr><td>10</td><td>Dribble D-Pad Up</td><td>Move Select</td><td>Off</td></tr>
+                    <tr><td>11</td><td>Dribble D-Pad Down</td><td>Move Select</td><td>Off</td></tr>
+                    <tr><td>12</td><td>Dribble D-Pad Left</td><td>Move Select</td><td>Off</td></tr>
+                    <tr><td>13</td><td>Dribble D-Pad Right</td><td>Move Select</td><td>Off</td></tr>
+                    <tr><td>14</td><td>Dunk Meter</td><td>Toggle</td><td>OFF</td></tr>
+                    <tr><td>15</td><td>Defense Assist</td><td>Toggle</td><td>ON</td></tr>
+                    <tr><td>16</td><td>Unlimited Stamina</td><td>Toggle</td><td>OFF</td></tr>
+                    <tr><td>17</td><td>Profile Select</td><td>1-5</td><td>Profile 1</td></tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Menu Controls Section -->
+        <section id="menu" class="section">
+            <h2>🎛️ Menu Navigation & Controls</h2>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">📱</span> Opening the Menu</div>
+                <div class="controls-box">
+                    <div class="control-item">
+                        <span>Open Menu</span>
+                        <span><span class="key ps-key">L2</span> + <span class="key ps-key">Options</span></span>
+                    </div>
+                    <div class="control-item">
+                        <span>Open Menu (Xbox)</span>
+                        <span><span class="key xbox-key">LT</span> + <span class="key xbox-key">Start</span></span>
+                    </div>
+                </div>
+                <p>When the menu opens, your controller will vibrate and the LED will turn <span style="color: #4488ff;">blue</span>.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🔄</span> Navigation Controls</div>
+                <div class="controls-box">
+                    <div class="control-item">
+                        <span>Previous Page</span>
+                        <span><span class="key ps-key">L2</span> + <span class="key">D-Pad Left</span></span>
+                    </div>
+                    <div class="control-item">
+                        <span>Next Page</span>
+                        <span><span class="key ps-key">L2</span> + <span class="key">D-Pad Right</span></span>
+                    </div>
+                    <div class="control-item">
+                        <span>Increase Value / Toggle ON</span>
+                        <span><span class="key ps-key">L2</span> + <span class="key">D-Pad Up</span></span>
+                    </div>
+                    <div class="control-item">
+                        <span>Decrease Value / Toggle OFF</span>
+                        <span><span class="key ps-key">L2</span> + <span class="key">D-Pad Down</span></span>
+                    </div>
+                    <div class="control-item">
+                        <span>Fast Value Change (Page 6 only)</span>
+                        <span>Hold <span class="key ps-key">R1</span> while adjusting (±10 steps)</span>
+                    </div>
+                </div>
+                
+                <div class="tip-box">
+                    Hold D-Pad Up/Down to rapidly change values. The repeat rate starts slow (90ms) and accelerates to 40ms after 500ms of holding.
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">💾</span> Saving & Closing</div>
+                <div class="controls-box">
+                    <div class="control-item">
+                        <span>Close & Save Settings</span>
+                        <span><span class="key ps-key">Circle</span> / <span class="key xbox-key">B</span></span>
+                    </div>
+                </div>
+                <p>When you close the menu, all settings are automatically saved to persistent storage. The LED turns <span style="color: #00ff88;">green</span> and the screen saver displays.</p>
+                
+                <div class="warning-box">
+                    Settings are saved per-profile. Make sure you're on the correct profile before making changes!
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">💡</span> Visual Feedback</div>
+                <ul style="list-style: none; padding-left: 20px;">
+                    <li>🔵 <strong>Blue LED:</strong> Menu is open</li>
+                    <li>🟢 <strong>Green LED:</strong> Menu closed, script active</li>
+                    <li>🔴 <strong>Red Flash:</strong> Setting turned OFF</li>
+                    <li>🟢 <strong>Green Flash:</strong> Setting turned ON</li>
+                    <li>📳 <strong>Strong Vibration:</strong> Menu opened</li>
+                    <li>📳 <strong>Light Vibration:</strong> Menu closed</li>
+                    <li>📳 <strong>Quick Pulse:</strong> Value changed</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Shooting Section -->
+        <section id="shooting" class="section">
+            <h2>🏀 Shooting Features</h2>
+            
+            <div class="feature-grid">
+                <div class="card">
+                    <div class="card-title"><span class="icon">🎯</span> Button Rhythm (Page 1)</div>
+                    <p>The core shooting feature that converts Square/X button presses into optimized right-stick movements for consistent shot timing.</p>
+                    
+                    <h4>How It Works:</h4>
+                    <ul>
+                        <li>Press <span class="key ps-key">Square</span> to initiate shot</li>
+                        <li>Script converts to RS down movement</li>
+                        <li>On release, performs smooth flick up</li>
+                        <li>Includes random variation for anti-detection</li>
+                    </ul>
+                    
+                    <div class="toggle-demo">
+                        <div class="toggle-switch on" onclick="this.classList.toggle('on')"></div>
+                        <span>Default: <span class="status-on">ON</span></span>
+                    </div>
+                    
+                    <div class="tip-box">
+                        This feature respects the remap button setting - if you have Square mapped to L3/R3, using those buttons will trigger normal Square behavior instead.
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">⏱️</span> Tempo (Page 2)</div>
+                    <p>Controls the delay (in milliseconds) before the flick-up motion executes after releasing the shot button.</p>
+                    
+                    <div class="slider-demo">
+                        <div class="slider-markers">
+                            <span class="value-min">0ms (Fastest)</span>
+                            <span class="value-default">42ms (Default)</span>
+                            <span class="value-max">300ms (Slowest)</span>
+                        </div>
+                        <div class="slider-track">
+                            <div class="slider-fill" style="width: 14%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="value-range">
+                        <strong>Range:</strong> <span class="value-min">0</span> - <span class="value-max">300</span> ms | 
+                        <strong>Default:</strong> <span class="value-default">42ms</span>
+                    </div>
+                    
+                    <h4>Recommended Values:</h4>
+                    <ul>
+                        <li><strong>0-30ms:</strong> Very fast releases, for quick-twitch shooters</li>
+                        <li><strong>30-60ms:</strong> Balanced timing, works for most builds</li>
+                        <li><strong>60-100ms:</strong> Slower, more deliberate shots</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">🔥</span> Turbo Shots (Page 3)</div>
+                    <p>Determines the shooting style when holding R2/RT while shooting.</p>
+                    
+                    <div class="options">
+                        <span class="option-pill">Hop Jumper</span>
+                        <span class="option-pill recommended">Turbo Fade ✓</span>
+                    </div>
+                    
+                    <h4>Hop Jumper Mode:</h4>
+                    <p>Flicks RS DOWN when holding R2 + shooting. Best for quick hop shots and catch-and-shoot situations.</p>
+                    
+                    <h4>Turbo Fade Mode (Default):</h4>
+                    <p>Flicks RS UP when holding R2 + shooting. Ideal for fadeaways, step-backs, and creating separation.</p>
+                    
+                    <div class="controls-box">
+                        <div class="control-item">
+                            <span>Turbo Shot Activation</span>
+                            <span>Hold <span class="key ps-key">R2</span> + <span class="key ps-key">Square</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">🕹️</span> RS Shooting (Page 4)</div>
+                    <p>Enables shooting using the right stick instead of the Square button. Detects stick holds and performs appropriate flick motion on release.</p>
+                    
+                    <div class="toggle-demo">
+                        <div class="toggle-switch" onclick="this.classList.toggle('on')"></div>
+                        <span>Default: <span class="status-off">OFF</span></span>
+                    </div>
+                    
+                    <h4>How It Works:</h4>
+                    <ul>
+                        <li>Hold RS down/up for 300ms+</li>
+                        <li>Release to trigger automatic flick</li>
+                        <li>Direction depends on initial stick position</li>
+                        <li>Disabled during menu navigation</li>
+                    </ul>
+                    
+                    <div class="value-range">
+                        <strong>Hold Duration Required:</strong> 300ms
+                    </div>
+                    
+                    <div class="warning-box">
+                        RS Shooting is disabled when L2 is held with R1 or D-Pad buttons to prevent conflicts with menu navigation.
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">⚡</span> Automated Shot (Page 5)</div>
+                    <p>One-button instant shot that automatically holds and releases for you. Perfect for catch-and-shoot situations.</p>
+                    
+                    <div class="toggle-demo">
+                        <div class="toggle-switch on" onclick="this.classList.toggle('on')"></div>
+                        <span>Default: <span class="status-on">ON</span></span>
+                    </div>
+                    
+                    <div class="controls-box">
+                        <div class="control-item">
+                            <span>Trigger Automated Shot</span>
+                            <span><span class="key ps-key">R3</span> (if Remap = L3) or <span class="key ps-key">L3</span> (if Remap = R3)</span>
+                        </div>
+                    </div>
+                    
+                    <p>Uses the <em>opposite</em> button of your remap setting. If Square is remapped to L3, then R3 triggers Automated Shot.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">🏃</span> Automated Speed (Page 6)</div>
+                    <p>Controls how long the Automated Shot holds before releasing (the "wind-up" time).</p>
+                    
+                    <div class="slider-demo">
+                        <div class="slider-markers">
+                            <span class="value-min">100ms</span>
+                            <span class="value-default">570ms</span>
+                            <span class="value-max">1000ms</span>
+                        </div>
+                        <div class="slider-track">
+                            <div class="slider-fill" style="width: 52%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="value-range">
+                        <strong>Range:</strong> <span class="value-min">100</span> - <span class="value-max">1000</span> ms | 
+                        <strong>Default:</strong> <span class="value-default">570ms</span>
+                    </div>
+                    
+                    <div class="tip-box">
+                        Hold R1 while adjusting to change in steps of 10 for faster tuning!
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">🎵</span> Automated Tempo (Page 7)</div>
+                    <p>The delay before the flick-up motion specifically for Automated Shots.</p>
+                    
+                    <div class="slider-demo">
+                        <div class="slider-markers">
+                            <span class="value-min">0ms</span>
+                            <span class="value-default">44ms</span>
+                            <span class="value-max">300ms</span>
+                        </div>
+                        <div class="slider-track">
+                            <div class="slider-fill" style="width: 15%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="value-range">
+                        <strong>Range:</strong> <span class="value-min">0</span> - <span class="value-max">300</span> ms | 
+                        <strong>Default:</strong> <span class="value-default">44ms</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">🔁</span> Remap Button (Page 8)</div>
+                    <p>Changes which stick-click button triggers normal Square functionality (and by extension, which triggers Automated Shot).</p>
+                    
+                    <div class="options">
+                        <span class="option-pill recommended">L3 ✓</span>
+                        <span class="option-pill">R3</span>
+                    </div>
+                    
+                    <table class="settings-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>L3 Function</th>
+                                <th>R3 Function</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>L3 (Default)</td>
+                                <td>Square (Pass/Shoot)</td>
+                                <td>Automated Shot</td>
+                            </tr>
+                            <tr>
+                                <td>R3</td>
+                                <td>Automated Shot</td>
+                                <td>Square (Pass/Shoot)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🛑</span> QuickStop (Page 9)</div>
+                <p>Automatically cancels your momentum and initiates a shot when pressing Square while moving. Creates space for clean jumpers.</p>
+                
+                <div class="options">
+                    <span class="option-pill">OFF</span>
+                    <span class="option-pill recommended">AUTO ✓</span>
+                    <span class="option-pill">LT/L2</span>
+                </div>
+                
+                <h4>Mode Descriptions:</h4>
+                <ul>
+                    <li><strong>OFF:</strong> QuickStop disabled</li>
+                    <li><strong>AUTO:</strong> Triggers when holding R2 + moving + pressing Square</li>
+                    <li><strong>LT/L2:</strong> Triggers when holding L2 + moving + pressing Square</li>
+                </ul>
+                
+                <h4>What QuickStop Does:</h4>
+                <ol>
+                    <li>Cancels Square input</li>
+                    <li>Zeros left stick (stops movement)</li>
+                    <li>Flicks RS right briefly (50ms)</li>
+                    <li>Holds RS down while you hold Square</li>
+                    <li>On release, performs full flick-up shot</li>
+                </ol>
+            </div>
+        </section>
+        
+        <!-- Dribbling Section -->
+        <section id="dribbling" class="section">
+            <h2>⛹️ Dribbling Features</h2>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🎮</span> D-Pad Dribble Moves Overview</div>
+                <p>Assign automated dribble combos to each D-Pad direction. Simply hold the D-Pad direction to execute the move continuously.</p>
+                
+                <div class="warning-box">
+                    When any dribble move is assigned, the D-Pad inputs are consumed by the script. This may affect other D-Pad functions.
+                </div>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="card">
+                    <div class="card-title"><span class="icon">⬆️</span> D-Pad Up (Page 10)</div>
+                    <p>Assigns a dribble move to D-Pad Up.</p>
+                    
+                    <div class="options">
+                        <span class="option-pill">Off</span>
+                        <span class="option-pill">BTB Spam</span>
+                        <span class="option-pill">Curry</span>
+                        <span class="option-pill">D Booker</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">⬇️</span> D-Pad Down (Page 11)</div>
+                    <p>Assigns a dribble move to D-Pad Down.</p>
+                    
+                    <div class="options">
+                        <span class="option-pill">Off</span>
+                        <span class="option-pill">BTB Spam</span>
+                        <span class="option-pill">Curry</span>
+                        <span class="option-pill">D Booker</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">⬅️</span> D-Pad Left (Page 12)</div>
+                    <p>Assigns a dribble move to D-Pad Left.</p>
+                    
+                    <div class="options">
+                        <span class="option-pill">Off</span>
+                        <span class="option-pill">B Break</span>
+                        <span class="option-pill">Escape</span>
+                        <span class="option-pill">Momentum</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">➡️</span> D-Pad Right (Page 13)</div>
+                    <p>Assigns a dribble move to D-Pad Right.</p>
+                    
+                    <div class="options">
+                        <span class="option-pill">Off</span>
+                        <span class="option-pill">B Break</span>
+                        <span class="option-pill">Escape</span>
+                        <span class="option-pill">Momentum</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>📖 Dribble Move Descriptions</h3>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🔄</span> BTB Spam (Behind The Back)</div>
+                <p>Rapid alternating behind-the-back moves. Great for creating space and confusing defenders.</p>
+                
+                <h4>Sequence (Up Direction):</h4>
+                <div class="combo-sequence">
+                    <span class="combo-step">RS: Left-Down</span>
+                    <span class="combo-wait">→ 110ms</span>
+                    <span class="combo-step">RS: Center</span>
+                    <span class="combo-wait">→ 95ms</span>
+                    <span class="combo-step">RS: Right-Down</span>
+                    <span class="combo-wait">→ 115ms</span>
+                    <span class="combo-step">RS: Center</span>
+                    <span class="combo-wait">→ 100ms</span>
+                    <span class="combo-step">Wait 150ms</span>
+                    <span class="combo-wait">→ Loop</span>
+                </div>
+                
+                <p><strong>Total Duration:</strong> ~570ms per cycle</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🌀</span> Curry Slide</div>
+                <p>The signature Steph Curry escape dribble. Combines behind-the-back with sprint for lateral movement.</p>
+                
+                <h4>Sequence (Up Direction):</h4>
+                <div class="combo-sequence">
+                    <span class="combo-step">R2 + RS: Left-Down</span>
+                    <span class="combo-wait">→ 120ms</span>
+                    <span class="combo-step">R2 + RS: Center</span>
+                    <span class="combo-wait">→ 140ms</span>
+                    <span class="combo-step">R2 + RS: Right-Down</span>
+                    <span class="combo-wait">→ 125ms</span>
+                    <span class="combo-step">R2 + RS: Center</span>
+                    <span class="combo-wait">→ 130ms</span>
+                    <span class="combo-step">Release R2</span>
+                    <span class="combo-wait">→ 180ms</span>
+                </div>
+                
+                <p><strong>Total Duration:</strong> ~695ms per cycle</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">📚</span> D Booker (Devin Booker)</div>
+                <p>Signature Devin Booker hesitation combo. Uses both sticks for complex movement patterns.</p>
+                
+                <h4>Sequence (Up Direction):</h4>
+                <div class="combo-sequence">
+                    <span class="combo-step">R2 + RS: Down</span>
+                    <span class="combo-wait">→ 110ms</span>
+                    <span class="combo-step">R2 + RS: Center</span>
+                    <span class="combo-wait">→ 85ms</span>
+                    <span class="combo-step">R2 + LS: Up</span>
+                    <span class="combo-wait">→ 85ms</span>
+                    <span class="combo-step">R2 + LS: Center</span>
+                    <span class="combo-wait">→ 65ms</span>
+                    <span class="combo-step">R2 + LS: Left</span>
+                    <span class="combo-wait">→ 130ms</span>
+                    <span class="combo-step">Release R2</span>
+                    <span class="combo-wait">→ 150ms</span>
+                </div>
+                
+                <p><strong>Total Duration:</strong> ~625ms per cycle</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">💥</span> B Break (Ball Break)</div>
+                <p>Quick size-up hesitation move for creating momentary separation.</p>
+                
+                <h4>Sequence (Left Direction):</h4>
+                <div class="combo-sequence">
+                    <span class="combo-step">R2 + RS: Up</span>
+                    <span class="combo-wait">→ 110ms</span>
+                    <span class="combo-step">R2 + RS: Center</span>
+                    <span class="combo-wait">→ 90ms</span>
+                    <span class="combo-step">Release R2</span>
+                    <span class="combo-wait">→ 150ms</span>
+                </div>
+                
+                <p><strong>Total Duration:</strong> ~350ms per cycle</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🏃</span> Escape Move</div>
+                <p>Lateral escape dribble that alternates direction to shake defenders.</p>
+                
+                <h4>Sequence (Left Direction):</h4>
+                <div class="combo-sequence">
+                    <span class="combo-step">R2 + RS: Left</span>
+                    <span class="combo-wait">→ 95ms</span>
+                    <span class="combo-step">R2 + RS: Center</span>
+                    <span class="combo-wait">→ 85ms</span>
+                    <span class="combo-step">R2 + RS: Right</span>
+                    <span class="combo-wait">→ 95ms</span>
+                    <span class="combo-step">R2 + RS: Center</span>
+                    <span class="combo-wait">→ 85ms</span>
+                    <span class="combo-step">Release R2</span>
+                    <span class="combo-wait">→ 170ms</span>
+                </div>
+                
+                <p><strong>Total Duration:</strong> ~530ms per cycle</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">⚡</span> Momentum Move</div>
+                <p>Speed boost move that combines stick movements with directional momentum.</p>
+                
+                <h4>Sequence (Left Direction):</h4>
+                <div class="combo-sequence">
+                    <span class="combo-step">RS: Up</span>
+                    <span class="combo-wait">→ 40ms</span>
+                    <span class="combo-step">RS: Center</span>
+                    <span class="combo-wait">→ 50ms</span>
+                    <span class="combo-step">R2</span>
+                    <span class="combo-wait">→ 70ms</span>
+                    <span class="combo-step">LS: Left</span>
+                    <span class="combo-wait">→ 400ms</span>
+                    <span class="combo-step">Wait</span>
+                    <span class="combo-wait">→ 700ms</span>
+                </div>
+                
+                <p><strong>Total Duration:</strong> ~1260ms per cycle</p>
+            </div>
+        </section>
+        
+        <!-- Defense Section -->
+        <section id="defense" class="section">
+            <h2>🛡️ Defense Features</h2>
+            
+            <div class="feature-grid">
+                <div class="card">
+                    <div class="card-title"><span class="icon">🎯</span> Defense Assist (Page 15)</div>
+                    <p>Automatically mirrors your left stick movement to the right stick when on defense, helping you stay in front of your opponent.</p>
+                    
+                    <div class="toggle-demo">
+                        <div class="toggle-switch on" onclick="this.classList.toggle('on')"></div>
+                        <span>Default: <span class="status-on">ON</span></span>
+                    </div>
+                    
+                    <h4>Activation:</h4>
+                    <div class="controls-box">
+                        <div class="control-item">
+                            <span>Activate Defense Assist</span>
+                            <span><span class="key ps-key">L2</span> + <span class="key ps-key">R1</span> + Move Left Stick</span>
+                        </div>
+                    </div>
+                    
+                    <h4>How It Works:</h4>
+                    <ul>
+                        <li>Hold L2 (defensive stance) + R1 (intense-D)</li>
+                        <li>Move left stick in any direction</li>
+                        <li>Right stick automatically follows left stick</li>
+                        <li>R1 input is consumed (not sent to game)</li>
+                    </ul>
+                    
+                    <div class="tip-box">
+                        This is incredibly useful for staying in front of dribblers. Your right stick (contest/hands) will track your movement direction automatically.
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">🏀</span> Dunk Meter (Page 14)</div>
+                    <p>Automatically holds the right stick down when attempting dunks to help time the dunk meter.</p>
+                    
+                    <div class="toggle-demo">
+                        <div class="toggle-switch" onclick="this.classList.toggle('on')"></div>
+                        <span>Default: <span class="status-off">OFF</span></span>
+                    </div>
+                    
+                    <h4>Activation:</h4>
+                    <div class="controls-box">
+                        <div class="control-item">
+                            <span>Activate Dunk Meter</span>
+                            <span><span class="key ps-key">L1</span> + <span class="key ps-key">R2</span></span>
+                        </div>
+                    </div>
+                    
+                    <h4>How It Works:</h4>
+                    <ul>
+                        <li>Hold L1 (lob/dunk modifier) + R2 (sprint)</li>
+                        <li>Script automatically holds RS down at 100%</li>
+                        <li>Also keeps R2 at 100% for maximum drive</li>
+                        <li>Releases when you release L1 or R2</li>
+                        <li>200ms grace period after releasing R2</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        When Dunk Meter is active, other RS-based shooting features are temporarily disabled to prevent conflicts.
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Utility Section -->
+        <section id="utility" class="section">
+            <h2>⚙️ Utility Features</h2>
+            
+            <div class="feature-grid">
+                <div class="card">
+                    <div class="card-title"><span class="icon">⚡</span> Unlimited Stamina (Page 16)</div>
+                    <p>Reduces your left stick input intensity to 70% to conserve stamina while still moving at a reasonable pace.</p>
+                    
+                    <div class="toggle-demo">
+                        <div class="toggle-switch" onclick="this.classList.toggle('on')"></div>
+                        <span>Default: <span class="status-off">OFF</span></span>
+                    </div>
+                    
+                    <h4>How It Works:</h4>
+                    <ul>
+                        <li>Left stick values are multiplied by 70%</li>
+                        <li>Applies when stick movement > 20 units</li>
+                        <li>Small movements (< 20) are zeroed out</li>
+                        <li>Disabled during dunk attempts</li>
+                    </ul>
+                    
+                    <div class="value-range">
+                        <strong>Movement Throttle:</strong> 70% of max speed
+                    </div>
+                    
+                    <div class="tip-box">
+                        This is great for conserving energy during long possessions or when you need to stay fresh for late-game situations.
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title"><span class="icon">💾</span> Profile Select (Page 17)</div>
+                    <p>Switch between 5 different saved profiles. Each profile stores all your settings independently.</p>
+                    
+                    <div class="options">
+                        <span class="option-pill recommended">Profile 1 ✓</span>
+                        <span class="option-pill">Profile 2</span>
+                        <span class="option-pill">Profile 3</span>
+                        <span class="option-pill">Profile 4</span>
+                        <span class="option-pill">Profile 5</span>
+                    </div>
+                    
+                    <h4>What Each Profile Saves:</h4>
+                    <ul>
+                        <li>All shooting settings (Button Rhythm, Tempo, etc.)</li>
+                        <li>All dribble move assignments</li>
+                        <li>Defense and utility toggles</li>
+                        <li>Last visited menu page</li>
+                    </ul>
+                    
+                    <div class="tip-box">
+                        Create different profiles for different builds! Profile 1 for your shooter, Profile 2 for your slasher, etc.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🖥️</span> OLED Screen Features</div>
+                <p>The script includes several display features for the Cronus Zen's OLED screen.</p>
+                
+                <h4>Loading Animation:</h4>
+                <ul>
+                    <li>Animated starfield background</li>
+                    <li>"AVENGED MVP" swoosh animation</li>
+                    <li>Discord link display</li>
+                    <li>Version and profile indicator</li>
+                </ul>
+                
+                <h4>Screen Saver:</h4>
+                <ul>
+                    <li>Displays when menu is closed</li>
+                    <li>Shows "L2 + Options to open menu"</li>
+                    <li>Animated star background continues</li>
+                </ul>
+                
+                <h4>Menu Display:</h4>
+                <ul>
+                    <li>Current setting name at top</li>
+                    <li>Current value in center</li>
+                    <li>Visual slider for numeric values</li>
+                    <li>Star animation continues in background</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🎨</span> LED Color Indicators</div>
+                
+                <table class="settings-table">
+                    <thead>
+                        <tr>
+                            <th>Color</th>
+                            <th>State</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: #00baba;">■ Teal</td>
+                            <td>Startup</td>
+                            <td>Script loading / initializing</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #00ff00;">■ Green</td>
+                            <td>Active</td>
+                            <td>Script running, menu closed</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #0000ff;">■ Blue</td>
+                            <td>Menu Open</td>
+                            <td>Currently in settings menu</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #ff0000;">■ Red Flash</td>
+                            <td>Toggle</td>
+                            <td>Setting turned OFF</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #00ff00;">■ Green Flash</td>
+                            <td>Toggle</td>
+                            <td>Setting turned ON</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- Combo Details Section -->
+        <section id="combos" class="section">
+            <h2>🎯 Technical Combo Details</h2>
+            
+            <p>This section provides the exact timing and stick values for all automated combos in the script.</p>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🎯</span> Flick Up RS Smooth</div>
+                <p>Standard shot release combo used for normal shooting.</p>
+                
+                <div class="combo-sequence">
+                    <span class="combo-step">RY: -50, RX: +20</span>
+                    <span class="combo-wait">→ wait(delay_duration)</span>
+                    <span class="combo-step">RY: -100, RX: +25</span>
+                    <span class="combo-wait">→ wait(300ms)</span>
+                    <span class="combo-step">RY: 0, RX: 0</span>
+                </div>
+                
+                <div class="tip-box">
+                    Random variation of ±7 is applied to main movements and ±2 to hold movements for anti-detection.
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🔄</span> Flick Up RS Reversed</div>
+                <p>Used for Turbo Fade shots when holding R2.</p>
+                
+                <div class="combo-sequence">
+                    <span class="combo-step">RY: +50, RX: -20</span>
+                    <span class="combo-wait">→ wait(delay_duration)</span>
+                    <span class="combo-step">RY: +100, RX: -25</span>
+                    <span class="combo-wait">→ wait(300ms)</span>
+                    <span class="combo-step">RY: 0, RX: 0</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">⚡</span> Insta Shot Smooth</div>
+                <p>Automated shot combo - holds down then releases.</p>
+                
+                <div class="combo-sequence">
+                    <span class="combo-step">RY: +100</span>
+                    <span class="combo-wait">→ wait(Insta_shot_duration)</span>
+                    <span class="combo-step">RY: -50, RX: +20</span>
+                    <span class="combo-wait">→ wait(Delay_duration_Insta)</span>
+                    <span class="combo-step">RY: -100, RX: +25</span>
+                    <span class="combo-wait">→ wait(300ms)</span>
+                    <span class="combo-step">RY: 0, RX: 0</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">🛑</span> QuickStop Initial Flick</div>
+                <p>First part of QuickStop - the momentum cancel.</p>
+                
+                <div class="combo-sequence">
+                    <span class="combo-step">Square: 0, LX: 0, LY: 0, R2: 0</span>
+                    <span class="combo-step">RX: +100</span>
+                    <span class="combo-wait">→ wait(50ms)</span>
+                    <span class="combo-step">RX: 0</span>
+                    <span class="combo-wait">→ wait(100ms)</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">📊</span> Random Variation Values</div>
+                
+                <table class="settings-table">
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>random_variation</td>
+                            <td>-7</td>
+                            <td>+7</td>
+                            <td>Main stick movements</td>
+                        </tr>
+                        <tr>
+                            <td>random_hold_variation</td>
+                            <td>-2</td>
+                            <td>+2</td>
+                            <td>Hold positions</td>
+                        </tr>
+                        <tr>
+                            <td>stabilization_variation</td>
+                            <td colspan="2">42</td>
+                            <td>Base timing reference</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- Recommended Settings Section -->
+        <section id="recommended" class="section">
+            <h2>⭐ Recommended Settings by Position</h2>
+            
+            <p>Select your position below to see optimized settings for your playstyle.</p>
+            
+            <div class="position-tabs">
+                <div class="position-tab active" data-position="pg">
+                    <div class="pos-name">Point Guard</div>
+                    <div class="pos-abbr">PG</div>
+                </div>
+                <div class="position-tab" data-position="sg">
+                    <div class="pos-name">Shooting Guard</div>
+                    <div class="pos-abbr">SG</div>
+                </div>
+                <div class="position-tab" data-position="sf">
+                    <div class="pos-name">Small Forward</div>
+                    <div class="pos-abbr">SF</div>
+                </div>
+                <div class="position-tab" data-position="pf">
+                    <div class="pos-name">Power Forward</div>
+                    <div class="pos-abbr">PF</div>
+                </div>
+                <div class="position-tab" data-position="sc">
+                    <div class="pos-name">Center</div>
+                    <div class="pos-abbr">C</div>
+                </div>
+            </div>
+            
+            <!-- Point Guard Settings -->
+            <div class="position-content active" id="pos-pg">
+                <div class="card">
+                    <div class="card-title"><span class="icon">🏀</span> Point Guard - Floor General Build</div>
+                    <p>Optimized for ball handlers who need to create their own shot while setting up teammates.</p>
+                    
+                    <table class="settings-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Value</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Button Rhythm</td><td class="status-on">ON</td><td>Essential for consistent shot timing</td></tr>
+                            <tr><td>Tempo</td><td>35-45ms</td><td>Quick release for pull-ups</td></tr>
+                            <tr><td>Turbo Shots</td><td>Turbo Fade</td><td>Step-backs and fadeaways off the dribble</td></tr>
+                            <tr><td>RS Shooting</td><td class="status-off">OFF</td><td>Stick needed for dribble moves</td></tr>
+                            <tr><td>Automated Shot</td><td class="status-on">ON</td><td>Quick catch-and-shoot when open</td></tr>
+                            <tr><td>Automated Speed</td><td>500-600ms</td><td>Medium speed for balanced timing</td></tr>
+                            <tr><td>Automated Tempo</td><td>40-50ms</td><td>Match your Button Rhythm tempo</td></tr>
+                            <tr><td>Remap Button</td><td>L3</td><td>Keeps R3 free for automated shots</td></tr>
+                            <tr><td>QuickStop</td><td>AUTO</td><td>Essential for creating space</td></tr>
+                            <tr><td>D-Pad Up</td><td>Curry</td><td>Signature escape move</td></tr>
+                            <tr><td>D-Pad Down</td><td>BTB Spam</td><td>Quick direction changes</td></tr>
+                            <tr><td>D-Pad Left</td><td>Escape</td><td>Lateral movement left</td></tr>
+                            <tr><td>D-Pad Right</td><td>Escape</td><td>Lateral movement right</td></tr>
+                            <tr><td>Dunk Meter</td><td class="status-off">OFF</td><td>PGs rarely need this</td></tr>
+                            <tr><td>Defense Assist</td><td class="status-on">ON</td><td>Stay in front of opposing guards</td></tr>
+                            <tr><td>Unlimited Stamina</td><td class="status-on">ON</td><td>Ball handling is exhausting</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="tip-box">
+                        As a PG, your dribble moves are crucial. Practice the timing of Curry slides and escapes to maximize your effectiveness creating space for shots.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shooting Guard Settings -->
+            <div class="position-content" id="pos-sg">
+                <div class="card">
+                    <div class="card-title"><span class="icon">🎯</span> Shooting Guard - Sharpshooter Build</div>
+                    <p>Optimized for off-ball shooters who need to knock down shots quickly when the ball swings their way.</p>
+                    
+                    <table class="settings-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Value</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Button Rhythm</td><td class="status-on">ON</td><td>Core shooting consistency</td></tr>
+                            <tr><td>Tempo</td><td>40-55ms</td><td>Slightly slower for catch-and-shoot</td></tr>
+                            <tr><td>Turbo Shots</td><td>Turbo Fade</td><td>Create space on drives</td></tr>
+                            <tr><td>RS Shooting</td><td class="status-on">ON</td><td>Alternative shooting option</td></tr>
+                            <tr><td>Automated Shot</td><td class="status-on">ON</td><td>Critical for spot-up shooting</td></tr>
+                            <tr><td>Automated Speed</td><td>550-650ms</td><td>Slightly longer for catch timing</td></tr>
+                            <tr><td>Automated Tempo</td><td>45-55ms</td><td>Match your catch-and-shoot rhythm</td></tr>
+                            <tr><td>Remap Button</td><td>L3</td><td>Standard setup</td></tr>
+                            <tr><td>QuickStop</td><td>AUTO</td><td>Stop-and-pop jumpers</td></tr>
+                            <tr><td>D-Pad Up</td><td>D Booker</td><td>Mid-range hesitation</td></tr>
+                            <tr><td>D-Pad Down</td><td>Off</td><td>Less iso work needed</td></tr>
+                            <tr><td>D-Pad Left</td><td>B Break</td><td>Quick size-up before shot</td></tr>
+                            <tr><td>D-Pad Right</td><td>B Break</td><td>Quick size-up before shot</td></tr>
+                            <tr><td>Dunk Meter</td><td class="status-off">OFF</td><td>SGs focus on shooting</td></tr>
+                            <tr><td>Defense Assist</td><td class="status-on">ON</td><td>Chase down shooters</td></tr>
+                            <tr><td>Unlimited Stamina</td><td class="status-off">OFF</td><td>Less ball handling = less stamina use</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="tip-box">
+                        SGs should master the Automated Shot feature. Position yourself in the corner or wing and use R3 for instant catch-and-shoot opportunities.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Small Forward Settings -->
+            <div class="position-content" id="pos-sf">
+                <div class="card">
+                    <div class="card-title"><span class="icon">🦅</span> Small Forward - Two-Way Build</div>
+                    <p>Balanced settings for versatile players who can score from anywhere and guard multiple positions.</p>
+                    
+                    <table class="settings-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Value</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Button Rhythm</td><td class="status-on">ON</td><td>Consistent mid-range game</td></tr>
+                            <tr><td>Tempo</td><td>45-60ms</td><td>Balanced for various shot types</td></tr>
+                            <tr><td>Turbo Shots</td><td>Turbo Fade</td><td>Fadeaways over smaller defenders</td></tr>
+                            <tr><td>RS Shooting</td><td class="status-off">OFF</td><td>Keep stick available for moves</td></tr>
+                            <tr><td>Automated Shot</td><td class="status-on">ON</td><td>Catch-and-shoot opportunities</td></tr>
+                            <tr><td>Automated Speed</td><td>570ms</td><td>Default works well</td></tr>
+                            <tr><td>Automated Tempo</td><td>44ms</td><td>Default balanced setting</td></tr>
+                            <tr><td>Remap Button</td><td>L3</td><td>Standard setup</td></tr>
+                            <tr><td>QuickStop</td><td>AUTO</td><td>Pull-up jumpers in transition</td></tr>
+                            <tr><td>D-Pad Up</td><td>BTB Spam</td><td>Create space when needed</td></tr>
+                            <tr><td>D-Pad Down</td><td>D Booker</td><td>Hesitation moves</td></tr>
+                            <tr><td>D-Pad Left</td><td>Momentum</td><td>Drive left with speed</td></tr>
+                            <tr><td>D-Pad Right</td><td>Momentum</td><td>Drive right with speed</td></tr>
+                            <tr><td>Dunk Meter</td><td class="status-on">ON</td><td>Finish strong at the rim</td></tr>
+                            <tr><td>Defense Assist</td><td class="status-on">ON</td><td>Guard multiple positions</td></tr>
+                            <tr><td>Unlimited Stamina</td><td class="status-on">ON</td><td>Two-way play is tiring</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="tip-box">
+                        SFs benefit from having both shooting and finishing tools ready. Enable Dunk Meter for drives and use QuickStop for pull-ups.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Power Forward Settings -->
+            <div class="position-content" id="pos-pf">
+                <div class="card">
+                    <div class="card-title"><span class="icon">💪</span> Power Forward - Stretch Big Build</div>
+                    <p>Optimized for stretch bigs who can shoot from outside while dominating the paint.</p>
+                    
+                    <table class="settings-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Value</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Button Rhythm</td><td class="status-on">ON</td><td>Stretch shooting</td></tr>
+                            <tr><td>Tempo</td><td>50-70ms</td><td>Slower, more deliberate shots</td></tr>
+                            <tr><td>Turbo Shots</td><td>Hop Jumper</td><td>Quick hop shots in the post</td></tr>
+                            <tr><td>RS Shooting</td><td class="status-off">OFF</td><td>Not needed for bigs</td></tr>
+                            <tr><td>Automated Shot</td><td class="status-on">ON</td><td>Catch at the elbow/corner</td></tr>
+                            <tr><td>Automated Speed</td><td>600-700ms</td><td>Longer for big man animations</td></tr>
+                            <tr><td>Automated Tempo</td><td>50-60ms</td><td>Slower timing for bigs</td></tr>
+                            <tr><td>Remap Button</td><td>L3</td><td>Standard setup</td></tr>
+                            <tr><td>QuickStop</td><td>LT/L2</td><td>Post-up quickstops</td></tr>
+                            <tr><td>D-Pad Up</td><td>Off</td><td>Bigs don't need dribbles</td></tr>
+                            <tr><td>D-Pad Down</td><td>Off</td><td>Focus on positioning</td></tr>
+                            <tr><td>D-Pad Left</td><td>Off</td><td>Keep D-Pad for plays</td></tr>
+                            <tr><td>D-Pad Right</td><td>Off</td><td>Keep D-Pad for plays</td></tr>
+                            <tr><td>Dunk Meter</td><td class="status-on">ON</td><td>Essential for finishing</td></tr>
+                            <tr><td>Defense Assist</td><td class="status-on">ON</td><td>Help defense positioning</td></tr>
+                            <tr><td>Unlimited Stamina</td><td class="status-off">OFF</td><td>Less movement overall</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="tip-box">
+                        PFs should focus on Dunk Meter and Automated Shot. Don't bother with dribble moves - your job is to catch, shoot, or finish.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Settings (Shooting Center) -->
+            <div class="position-content" id="pos-sc">
+                <div class="card">
+                    <div class="card-title"><span class="icon">🎯</span> Center - Stretch Five Build</div>
+                    <p>Optimized for modern stretch bigs who can space the floor with 3-point shooting while still being a presence in the paint. Think Brook Lopez, Kristaps Porzingis, or Karl-Anthony Towns.</p>
+                    
+                    <table class="settings-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Value</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Button Rhythm</td><td class="status-on">ON</td><td>Essential for consistent 3-point shooting</td></tr>
+                            <tr><td>Tempo</td><td>55-75ms</td><td>Slower release for big man animations</td></tr>
+                            <tr><td>Turbo Shots</td><td>Turbo Fade</td><td>Fadeaways over smaller defenders in post</td></tr>
+                            <tr><td>RS Shooting</td><td class="status-off">OFF</td><td>Stick needed for post moves</td></tr>
+                            <tr><td>Automated Shot</td><td class="status-on">ON</td><td>Critical for catch-and-shoot from perimeter</td></tr>
+                            <tr><td>Automated Speed</td><td>650-750ms</td><td>Longer wind-up for big man shot timing</td></tr>
+                            <tr><td>Automated Tempo</td><td>55-65ms</td><td>Match slower big man release</td></tr>
+                            <tr><td>Remap Button</td><td>L3</td><td>Standard setup</td></tr>
+                            <tr><td>QuickStop</td><td>LT/L2</td><td>Post-up to jumper transitions</td></tr>
+                            <tr><td>D-Pad Up</td><td>Off</td><td>Minimal dribbling for bigs</td></tr>
+                            <tr><td>D-Pad Down</td><td>Off</td><td>Keep D-Pad for play calls</td></tr>
+                            <tr><td>D-Pad Left</td><td>B Break</td><td>Quick hesitation before shooting</td></tr>
+                            <tr><td>D-Pad Right</td><td>B Break</td><td>Quick hesitation before shooting</td></tr>
+                            <tr><td>Dunk Meter</td><td class="status-on">ON</td><td>Still need to finish at the rim</td></tr>
+                            <tr><td>Defense Assist</td><td class="status-on">ON</td><td>Rim protection is still your job</td></tr>
+                            <tr><td>Unlimited Stamina</td><td class="status-off">OFF</td><td>Need full speed for closeouts</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="tip-box">
+                        Centers are most effective when popping to the 3-point line after screens. Use Automated Shot (R3) when you catch the ball open - it's your bread and butter.
+                    </div>
+                    
+                    <h4>🎮 Playstyle Tips for Centers:</h4>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li><strong>Pick & Pop:</strong> Set screens and pop to the perimeter. Use R3 for instant catch-and-shoot.</li>
+                        <li><strong>Corner Spacing:</strong> When your PG drives, drift to the corner. Automated Shot makes you deadly here.</li>
+                        <li><strong>Post Fades:</strong> Use Turbo Fade (R2 + Square) when backing down smaller defenders.</li>
+                        <li><strong>Elbow Game:</strong> The free throw line extended is your sweet spot. QuickStop helps here.</li>
+                        <li><strong>Defensive Balance:</strong> You still need to protect the rim - Defense Assist helps you stay in position.</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        Don't forget you're still a Center! Even with shooting abilities, you need to crash the boards and contest shots. Keep Dunk Meter ON for putbacks.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title"><span class="icon">📝</span> General Tips for All Positions</div>
+                
+                <ul>
+                    <li><strong>Start with defaults:</strong> The script's default settings are well-tuned. Only change what you need.</li>
+                    <li><strong>Use profiles:</strong> Create separate profiles for different builds or game modes.</li>
+                    <li><strong>Fine-tune tempo:</strong> If shots feel early, increase tempo. If late, decrease it.</li>
+                    <li><strong>Practice timing:</strong> Even with automation, you need to learn when to trigger shots.</li>
+                    <li><strong>Defense Assist is universal:</strong> Almost every build benefits from this feature.</li>
+                    <li><strong>Don't over-dribble:</strong> Even with automated moves, excessive dribbling kills stamina.</li>
+                </ul>
+                
+                <div class="warning-box">
+                    Remember to save your settings by pressing Circle/B before starting a game. Settings only persist when properly saved!
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <p><strong>Avenged MVP v6.1</strong> - Created by Avenged Scripts</p>
+        <p>
+            <a href="https://discord.gg/AvengedScripts" target="_blank">Discord</a> | 
+            <a href="https://www.patreon.com/AvengedScripts" target="_blank">Patreon</a>
+        </p>
+        <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.85rem;">
+            ⚠️ Redistribution of this script without permission is prohibited.
+        </p>
+    </footer>
+    
+    <script>
+        // Create animated stars background
+        function createStars() {
+            const bg = document.getElementById('bgAnimation');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                bg.appendChild(star);
+            }
+        }
+        createStars();
+        
+        // Navigation functionality
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update active section
+                const sectionId = btn.getAttribute('data-section');
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Scroll to top of main content
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        
+        // Position tab functionality
+        document.querySelectorAll('.position-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                document.querySelectorAll('.position-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update active content
+                const position = tab.getAttribute('data-position');
+                document.querySelectorAll('.position-content').forEach(c => c.classList.remove('active'));
+                document.getElementById('pos-' + position).classList.add('active');
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
